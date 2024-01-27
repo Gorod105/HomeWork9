@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class MyQueue <T> {
     private static final int DEFAULT_CAPACITY = 10;
-    private int size;
     private Object[] myQueue;
     private int indexNow = 0;
     public MyQueue() {
@@ -24,6 +23,7 @@ public class MyQueue <T> {
     }
     public void clear(){
         this.myQueue = new Object[DEFAULT_CAPACITY];
+        indexNow = 0;
     }
 
     public int size(){
@@ -39,6 +39,10 @@ public class MyQueue <T> {
                 myQueue[index] = myQueue[index+1];
                 index++;
             }
+        if (indexNow == 0)
+        {
+            return result;
+        }
             indexNow--;
 
         return result;

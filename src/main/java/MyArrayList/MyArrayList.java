@@ -27,6 +27,7 @@ public class MyArrayList <A>{
     }
     public void clear(){
          this.myArrayList = new Object[DEFAULT_CAPACITY];
+        indexNow = 0;
     }
     public int size(){
         return indexNow;
