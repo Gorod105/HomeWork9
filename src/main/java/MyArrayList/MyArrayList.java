@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class MyArrayList <A>{
      private static final int DEFAULT_CAPACITY = 10;
-     private int size;
      private Object[] myArrayList;
      private int indexNow = 0;
 
@@ -30,16 +29,13 @@ public class MyArrayList <A>{
          this.myArrayList = new Object[DEFAULT_CAPACITY];
     }
     public int size(){
-         int i = 0;
-         while (myArrayList[i] != null){
-             i++;
-         }
-        return i-1;
+        return indexNow;
     }
     public void remove(int index){
         while (myArrayList[index] != null){
             myArrayList[index] = myArrayList[index+1];
             index++;
         }
+        indexNow--;
     }
 }
