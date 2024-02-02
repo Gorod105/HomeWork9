@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class MyHashMap <K,V> {
     static final int DEFAULT_INITIAL_CAPACITY = 16;
-    private MyHashMap.Node<K,V>[] table;
+    private Node<K,V>[] table;
     private int size;
     private int backets;
     public MyHashMap(){
@@ -25,50 +25,103 @@ public class MyHashMap <K,V> {
         }
 
        if (table[hash] != null){
-
-               while (curentNode.next != null) {
-                   if (curentNode.key.equals(key)){
-                       System.out.println("Keys Equals");
-                       curentNode.value = value;
+           for (int i = 0; i < size; i++) {
+               if (curentNode.getKey().equals(key)){
+                       curentNode.setValue(value);
                        break;
                    }
-                   curentNode = curentNode.next;
+               if(curentNode.getNext() == null){
+                   break;
                }
-               if (curentNode.next == null) {
-                   curentNode.next = newNode;
+                   curentNode = curentNode.getNext();
+               }
+               if (curentNode.getNext() == null && !curentNode.getKey().equals(key)) {
+                   curentNode.setNext(newNode);
+                   size++;
                }
        }else {
             table[hash] = newNode;
+            size++;
+
        }
     }
     public V get(K key){
-        int hash = key.hashCode()%table.length;
-        if (hash<0){
-            hash = -hash;
-        }
+        int hash = Math.abs(key.hashCode()%table.length);
         if (table[hash] == null){
             return null;
         }
-        if (table[hash].next == null){
-//            System.out.println("if");
-            return table[hash].value;
+        if (table[hash].getNext() == null){
+
+            return table[hash].getValue();
 
         }else {
-//            System.out.println("else");
+
             Node<K, V> var = table[hash];
-            while (!(var.key.equals(key))){
-                var = var.next;
+            while (var.getNext() != null){
+                if (var.getKey().equals(key)) {
+                    break;
+                }
+                var = var.getNext();
             }
-            return var.value;
+            if (var.getKey().equals(key)) {
+                return var.getValue();
+            }
+            return null;
+
         }
     }
-    private static class Node<K,V> {
-        final int hash;
-        final K key;
-        V value;
-        MyHashMap.Node<K,V> next;
+    public void clear(){
+        table = new Node[DEFAULT_INITIAL_CAPACITY];
+        size = 0;
+    }
+    public void remove(K key){
+        int hash = key.hashCode()%table.length;
+        Node<K, V> var = table[hash];
+        int indexElWithKey = 0;
+        Node<K,V> nextEl;
+        while (!(var.getKey().equals(key))){
+            var = var.getNext();
+            indexElWithKey++;
+        }
+        nextEl = var.next;
+        var = table[hash];
+        for (int i = 0; i < indexElWithKey-1; i++) {
+            var = var.getNext();
+        }
+        var.setNext(nextEl);
+        size--;
+    }
+    private class Node<K,V> {
+        private final int hash;
+        private final K key;
+        private V value;
+        private Node<K,V> next;
 
-        Node(int hash, K key, V value, MyHashMap.Node<K, V> next) {
+        public int getHash() {
+            return hash;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public void setValue(V value) {
+            this.value = value;
+        }
+
+        public Node<K, V> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<K, V> next) {
+            this.next = next;
+        }
+
+        Node(int hash, K key, V value, Node<K, V> next) {
             this.hash = hash;
             this.key = key;
             this.value = value;
