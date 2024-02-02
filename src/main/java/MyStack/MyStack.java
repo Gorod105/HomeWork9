@@ -32,22 +32,18 @@ public class MyStack <T> {
         return indexNow;
     }
     public Object peek(){
-        return myStack[0];
+        if (indexNow == 0){
+            return myStack[0];
+        }
+        return myStack[indexNow-1];
     }
     public Object pop(){
-        Object result = myStack[0];
-        int index = 0;
-        while (myStack[index] != null){
-            myStack[index] = myStack[index+1];
-            index++;
-        }
-        if (indexNow == 0)
-        {
-            return result;
+        if (indexNow == 0){
+            return myStack[0];
         }
         indexNow--;
 
-        return result;
+        return myStack[indexNow];
     }
     public void remove(int index){
         while (myStack[index] != null){
