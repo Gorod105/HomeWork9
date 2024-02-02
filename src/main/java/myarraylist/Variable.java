@@ -1,4 +1,4 @@
-package MyArrayList;
+package myarraylist;
 
 public class  Variable <A>{
     private A variable;

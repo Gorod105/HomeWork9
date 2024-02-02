@@ -1,4 +1,4 @@
-package MyHashMap;
+package myhashmap;
 
 import java.util.Objects;
 

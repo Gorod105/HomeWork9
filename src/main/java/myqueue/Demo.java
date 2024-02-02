@@ -1,4 +1,4 @@
-package MyQueue;
+package myqueue;
 
 
 public class Demo {

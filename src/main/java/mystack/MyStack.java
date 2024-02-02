@@ -1,6 +1,4 @@
-package MyStack;
-
-import MyQueue.QueueVariable;
+package mystack;
 
 import java.util.Arrays;
 

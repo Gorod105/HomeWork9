@@ -1,4 +1,4 @@
-package MyLinkedList;
+package mylinkedlist;
 
 public class MyLinkedList <E> {
     private Node<E> first;

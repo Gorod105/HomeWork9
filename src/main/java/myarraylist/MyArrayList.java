@@ -1,4 +1,4 @@
-package MyArrayList;
+package myarraylist;
 
 import java.util.Arrays;
 
@@ -23,7 +23,11 @@ public class MyArrayList <A>{
         indexNow++;
     }
     public Object get(int index){
-        return myArrayList[index];
+        if (index >= indexNow){
+            throw new IndexOutOfBoundsException("Try get index out of bounds");
+        }else {
+            return myArrayList[index];
+        }
     }
     public void clear(){
          this.myArrayList = new Object[DEFAULT_CAPACITY];
@@ -33,10 +37,15 @@ public class MyArrayList <A>{
         return indexNow;
     }
     public void remove(int index){
-        while (myArrayList[index] != null){
-            myArrayList[index] = myArrayList[index+1];
-            index++;
+        if (index >= indexNow){
+            throw new IndexOutOfBoundsException("Try remove index out of bounds");
+        }else {
+
+            while (myArrayList[index] != null) {
+                myArrayList[index] = myArrayList[index + 1];
+                index++;
+            }
+            indexNow--;
         }
-        indexNow--;
     }
 }

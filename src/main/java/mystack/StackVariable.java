@@ -1,9 +1,9 @@
-package MyQueue;
+package mystack;
 
-public class QueueVariable<A>{
+public class StackVariable <A> {
     private A variable;
 
-    public QueueVariable(A variable) {
+    public StackVariable(A variable) {
         this.variable = variable;
     }
 

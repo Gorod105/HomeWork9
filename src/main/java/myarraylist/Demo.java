@@ -1,4 +1,4 @@
-package MyArrayList;
+package myarraylist;
 
 
 public class Demo {
@@ -8,8 +8,8 @@ public class Demo {
         myArrayList.add("Stepan");
         myArrayList.add("Ivan");
         myArrayList.add("Mykola");
-        myArrayList.remove(1);
-        System.out.println("myArrayList.get(1) = " + myArrayList.get(1));
+//        myArrayList.remove(5);
+        System.out.println("myArrayList.get(1) = " + myArrayList.get(3));
         System.out.println("myArrayList.size() = " + myArrayList.size());
     }
 }
